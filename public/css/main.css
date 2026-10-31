@@ -1,30 +1,138 @@
-html, body {
-    background-color: lightblue;
-    font-family: Arial, sans-serif;
+* {
+    box-sizing: border-box;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
 
 body {
-    nav {
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f7fa;
+    color: #1f2937;
+}
 
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
+.site-header {
+    background-color: #12344d;
+    color: #ffffff;
+}
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+.navbar {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
 
-            &:hover {
-                color: #0066cc;
-            }
-        }
+.brand {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    min-height: 70vh;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.page-header h1 {
+    color: #12344d;
+    font-size: 2.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.page-header p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #4b5563;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+    color: #12344d;
+    margin-bottom: 0.75rem;
+}
+
+.card p {
+    color: #4b5563;
+}
+
+.main-logo {
+    display: block;
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    margin: 2rem auto;
+}
+
+footer {
+    background-color: #12344d;
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    main {
+        padding: 2rem 1rem;
     }
 }
