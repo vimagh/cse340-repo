@@ -1,15 +1,35 @@
-
-
-    <%- include('partials/header') %>
+<%- include('partials/header') %>
 
 <main>
     <h1><%= title %></h1>
 
-    <h2>Welcome to the CSE 340 Service Network!</h2>
-    <p>Our mission is to promote service across the world by connecting volunteers with service opportunities in their community.</p>
+    <p>Here are a few of our partner organizations:</p>
 
-    <img class="main-logo" src="images/cse340-service-network.png" alt="CSE 340 Service Network Logo">
+    <ul class="organization-list">
+        <li class="organization-card">
+            <img src="/images/brightfuture-logo.png" alt="BrightFuture Builders logo">
+            <div>
+                <strong>BrightFuture Builders</strong>
+                <p>info@brightfuture.org</p>
+            </div>
+        </li>
 
+        <li class="organization-card">
+            <img src="/images/greenharvest-logo.png" alt="GreenHarvest Growers logo">
+            <div>
+                <strong>GreenHarvest Growers</strong>
+                <p>contact@greenharvest.org</p>
+            </div>
+        </li>
+
+        <li class="organization-card">
+            <img src="/images/unityserve-logo.png" alt="UnityServe Volunteers logo">
+            <div>
+                <strong>UnityServe Volunteers</strong>
+                <p>hello@unityserve.org</p>
+            </div>
+        </li>
+    </ul>
 </main>
 
 <%- include('partials/footer') %>
