@@ -1,3 +1,5 @@
+import db from './db.js';
+
 const getAllProjects = async () => {
     try {
         const query = `
@@ -23,3 +25,5 @@ const getAllProjects = async () => {
         throw error;
     }
 };
+
+export { getAllProjects };
