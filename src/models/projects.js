@@ -1,5 +1,3 @@
-import db from './db.js'
-
 const getAllProjects = async () => {
     try {
         const query = `
@@ -10,8 +8,8 @@ const getAllProjects = async () => {
                 service_project.location,
                 service_project.project_date,
                 organization.name AS organization_name
-            FROM service_project
-            JOIN organization
+            FROM public.service_project
+            JOIN public.organization
                 ON service_project.organization_id =
                    organization.organization_id
             ORDER BY service_project.project_date;
@@ -25,5 +23,3 @@ const getAllProjects = async () => {
         throw error;
     }
 };
-
-export { getAllProjects };
