@@ -3,23 +3,32 @@
 <main>
     <h1><%= title %></h1>
 
-    <h2>Upcoming Service Projects</h2>
+    <p>Explore our upcoming service projects.</p>
 
     <ul class="project-list">
-        <li class="project-card">
-            <h3>Park Cleanup</h3>
-            <p>Join us to clean up local parks and make them beautiful!</p>
-        </li>
+        <% projects.forEach(project => { %>
+            <li class="project-card">
+                <h2>
+                     <%= new Date(project.project_date).toLocaleDateString(
+                        'en-US',
+                        {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        }
+                    ) %>:
+                    <%= project.title %>
+                    (<em><%= project.organization_name %></em>)
+                </h2>
 
-        <li class="project-card">
-            <h3>Food Drive</h3>
-            <p>Help collect and distribute food to those in need.</p>
-        </li>
+                <p><%= project.description %></p>
 
-        <li class="project-card">
-            <h3>Community Tutoring</h3>
-            <p>Volunteer to tutor students in various subjects.</p>
-        </li>
+                <p>
+                    <strong>Location:</strong>
+                    <%= project.location %>
+                </p>
+            </li>
+        <% }); %>
     </ul>
 </main>
 
