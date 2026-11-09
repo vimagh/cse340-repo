@@ -3,29 +3,15 @@
 <main>
     <section class="page-header">
         <h1><%= title %></h1>
-        <p>Explore the different types of service projects available in our community.</p>
+        <p>Explore the categories of service projects available through our partner organizations.</p>
     </section>
 
     <section class="category-grid">
-        <article class="card">
-            <h2>Environmental</h2>
-            <p>Projects focused on protecting and improving the environment.</p>
-        </article>
-
-        <article class="card">
-            <h2>Educational</h2>
-            <p>Projects that support learning, tutoring, and educational development.</p>
-        </article>
-
-        <article class="card">
-            <h2>Community Service</h2>
-            <p>Projects that help strengthen and support local communities.</p>
-        </article>
-
-        <article class="card">
-            <h2>Health and Wellness</h2>
-            <p>Projects focused on improving physical and mental well-being.</p>
-        </article>
+        <% categories.forEach(category => { %>
+            <article class="card">
+                <h2><%= category.name %></h2>
+            </article>
+        <% }); %>
     </section>
 </main>
 

@@ -9,19 +9,34 @@ import { Pool } from 'pg';
  * Render production:
  * Uses DATABASE_URL from the Render environment settings.
  */
+
 const connectionString =
     process.env.DATABASE_URL || process.env.DB_URL;
 
+if (!connectionString) {
+    throw new Error(
+        'Database connection string is missing. Set DATABASE_URL or DB_URL.'
+    );
+}
+
+const isRenderDatabase =
+    connectionString.includes('render.com');
+
 const pool = new Pool({
     connectionString,
-    ssl: process.env.NODE_ENV === 'production'
+    ssl: isRenderDatabase
         ? {
             rejectUnauthorized: false
         }
         : false
 });
 
-let db = null;
+/**
+ * Export either:
+ * - a logging wrapper in development
+ * - the normal PostgreSQL pool in production
+ */
+let db;
 
 if (
     process.env.NODE_ENV === 'development' &&
@@ -32,17 +47,17 @@ if (
             try {
                 const start = Date.now();
 
-                const res = await pool.query(text, params);
+                const result = await pool.query(text, params);
 
                 const duration = Date.now() - start;
 
                 console.log('Executed query:', {
                     text: text.replace(/\s+/g, ' ').trim(),
                     duration: `${duration}ms`,
-                    rows: res.rowCount
+                    rows: result.rowCount
                 });
 
-                return res;
+                return result;
             } catch (error) {
                 console.error('Error in query:', {
                     text: text.replace(/\s+/g, ' ').trim(),

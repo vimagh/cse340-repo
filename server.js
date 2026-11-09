@@ -4,6 +4,7 @@ import express from 'express';
 import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organizations.js';
 import { getAllProjects } from './src/models/projects.js';
+import { getAllCategories } from './src/models/categories.js';
 
 
 // Define the application environment
@@ -63,17 +64,31 @@ app.get('/projects', async (req, res) => {
 });
 
 app.get('/categories', async (req, res) => {
-  const title = 'Service Project Categories';
-  res.render('categories', { title });
+    try {
+        const title = 'Service Project Categories';
+
+        const categories = await getAllCategories();
+
+        console.log('CATEGORIES SENT TO EJS:', categories);
+
+        res.render('categories', {
+            title,
+            categories
+        });
+    } catch (error) {
+        console.error('Error loading categories:', error);
+        res.status(500).send('Unable to load categories.');
+    }
 });
 
-app.listen(PORT, async () => {
-  try {
-    await testConnection();
-    console.log(`Server is running at http://127.0.0.1:${PORT}`);
-    console.log(`Environment: ${NODE_ENV}`);
-  } catch (error) {
-    console.error('Error connecting to the database:', error);
-  }
+
+app.listen(PORT, () => {
+  console.log(`Server is running at http://127.0.0.1:${PORT}`);
+  console.log(`Environment: ${NODE_ENV}`);
+
+  testConnection()
+    .catch((error) => {
+      console.error('Database connection test failed:', error.message);
+    });
 });
 
